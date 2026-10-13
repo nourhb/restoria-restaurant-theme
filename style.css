@@ -1,0 +1,179 @@
+/*
+Theme Name: Restoria
+Theme URI: https://github.com/nourhb/restoria-restaurant-theme
+Author: Nour El Houda Bouajila
+Author URI: https://nour-hb.vercel.app/
+Description: Restoria is an elegant Full Site Editing theme crafted for restaurants and fine dining — deep charcoal and warm cream design with a burnt-sienna accent. Reservation hero with table-booking CTA, hours/location info bar, our-story section, signature-dishes grid, full tabbed menu, chef profile, testimonials, gallery, private-events section, animated stats, contact info and a booking CTA — everything a restaurant needs to fill tables online.
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 6.9
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: restoria
+Tags: full-site-editing, block-patterns, block-styles, custom-colors, custom-logo, featured-images, threaded-comments, translation-ready, wide-blocks, editor-style
+*/
+
+/* ---------- Base polish ---------- */
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Skip link visibility */
+.skip-link:focus {
+	z-index: 99999;
+}
+
+/* ---------- Dish & gallery cards ---------- */
+
+.restoria-card {
+	transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.restoria-card:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 24px 48px -16px rgba(26, 21, 18, .35);
+}
+
+.restoria-card img {
+	transition: transform .6s ease;
+}
+
+.restoria-card:hover img {
+	transform: scale(1.05);
+}
+
+/* Status badges */
+.restoria-badge {
+	display: inline-block;
+	padding: .35rem .9rem;
+	border-radius: 999px;
+	font-size: .72rem;
+	font-weight: 700;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+}
+
+.restoria-badge--accent { background: #c2410c; color: #fff; }
+.restoria-badge--olive { background: #5b6236; color: #fff; }
+.restoria-badge--charcoal { background: #1a1512; color: #faf6f0; }
+.restoria-badge--cream { background: #faf6f0; color: #1a1512; }
+
+/* ---------- Buttons ---------- */
+
+.wp-block-button__link {
+	transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease;
+}
+
+.wp-block-button__link:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 12px 24px -8px rgba(194, 65, 12, .5);
+}
+
+/* ---------- Reservation pulse ---------- */
+
+.restoria-pulse {
+	position: relative;
+}
+
+.restoria-pulse::before {
+	content: "";
+	position: absolute;
+	inset: -4px;
+	border-radius: inherit;
+	border: 2px solid rgba(194, 65, 12, .55);
+	animation: restoria-ping 2.2s ease-out infinite;
+	pointer-events: none;
+}
+
+@keyframes restoria-ping {
+	0% { transform: scale(.98); opacity: .9; }
+	70% { transform: scale(1.04); opacity: 0; }
+	100% { transform: scale(1.04); opacity: 0; }
+}
+
+/* ---------- Scroll reveal ---------- */
+
+.restoria-reveal {
+	opacity: 0;
+	transform: translateY(28px);
+	transition: opacity .7s ease, transform .7s ease;
+}
+
+.restoria-reveal.is-visible {
+	opacity: 1;
+	transform: none;
+}
+
+/* ---------- Back to top ---------- */
+
+.restoria-to-top {
+	position: fixed;
+	right: 1.5rem;
+	bottom: 1.5rem;
+	width: 3rem;
+	height: 3rem;
+	border: 0;
+	border-radius: 50%;
+	background: #c2410c;
+	color: #fff;
+	font-size: 1.25rem;
+	line-height: 1;
+	cursor: pointer;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(12px);
+	transition: opacity .3s ease, transform .3s ease, visibility .3s;
+	z-index: 999;
+}
+
+.restoria-to-top.is-visible {
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+}
+
+.restoria-to-top:hover {
+	background: #1a1512;
+	color: #faf6f0;
+}
+
+/* ---------- Focus states ---------- */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+	outline: 3px solid #c2410c;
+	outline-offset: 3px;
+}
+
+/* ---------- Print ---------- */
+
+@media print {
+	.restoria-to-top,
+	.site-header,
+	.site-footer {
+		display: none;
+	}
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+	.restoria-pulse::before { animation: none; }
+	.restoria-reveal { opacity: 1; transform: none; transition: none; }
+	.restoria-card, .restoria-card img, .wp-block-button__link { transition: none; }
+	.restoria-card:hover { transform: none; }
+}
